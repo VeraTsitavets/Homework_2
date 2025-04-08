@@ -39,12 +39,12 @@
 
 .button:active {
     background: var(--color);
-    color: white;
+    color: #000000;
 }
 
 .active {
     background: var(--color);
-    color: white;
+    color: #000000;
 }
 
 .affairs {
