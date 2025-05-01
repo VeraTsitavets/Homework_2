@@ -1,4 +1,4 @@
-import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react'
+import React, {ButtonHTMLAttributes, DetailedHTMLProps, ReactNode, useState} from 'react'
 import s from './SuperButton.module.css'
 
 // тип пропсов обычной кнопки, children в котором храниться название кнопки там уже описан
@@ -14,9 +14,12 @@ const SuperButton: React.FC<SuperButtonPropsType> = (
         xType,
         className,
         disabled,
+        children,
         ...restProps // все остальные пропсы попадут в объект restProps, там же будет children
     }
 ) => {
+    const [currentChildren, setCurrentChildren] = useState<ReactNode>(children)
+
     const finalClassName = `${s.button}  
     ${xType === 'red' ? s.red : xType === 'secondary' ? s.secondary : s.default}
             ${disabled ? s.disabled :  ''} `
@@ -27,10 +30,37 @@ const SuperButton: React.FC<SuperButtonPropsType> = (
         //              ? ...
         // + (className ? ' ' + className : '') // задачка на смешивание классов
 
+
+    const onMouseEnter = () => {
+        if (disabled)
+            return
+        setCurrentChildren('При наведении')
+    }
+
+    const onMouseLeave = () => {
+        setCurrentChildren(children)
+    }
+
+    const onMouseDown = () => {
+        if (disabled)
+            return
+
+        setCurrentChildren("При нажатии")
+    }
+
+    const onMouseUp = () => {
+        setCurrentChildren(children)
+    }
+
     return (
         <button
             disabled={disabled}
             className={finalClassName}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+            onMouseUp={onMouseUp}
+            onMouseDown={onMouseDown}
+            children={currentChildren}
             {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
         />
     )
