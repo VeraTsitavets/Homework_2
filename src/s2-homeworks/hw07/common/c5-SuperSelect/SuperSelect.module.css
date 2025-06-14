@@ -1,7 +1,23 @@
 .select {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000;
+
+    padding: 2px 82px 5px 10px;
+
+    background-image: url("chevron-down.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+
+    appearance: none;
+
+    border: 1px solid #c2c2c2;
+    border-radius: 2px;
 }
 
 .select:focus {
+    border: 1px solid #000;
 }
 
 

@@ -25,6 +25,8 @@
     border-radius: 3px;
     border: 2px solid #06c;
     cursor: pointer;
+
+
 }
 
 .checkbox:checked {
