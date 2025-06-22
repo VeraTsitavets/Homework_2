@@ -1,7 +1,9 @@
 .item {
+
 }
 
 .item:last-of-type {
+
 }
 
 .users {
@@ -11,13 +13,33 @@
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
 }
 
 .thead {
+
+    background-color: #E5E5E5;
+    display: flex;
+    padding: 17px 218px 9px 0px;
+
 }
 
 .nameCol {
+
+    font-weight: 300;
+    font-size: 14px;
+    padding-right: 218px;
+
 }
 
 .ageCol {
+
+    font-weight: 500;
+    font-size: 14px;
+
+
+
 }
