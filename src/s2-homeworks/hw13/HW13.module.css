@@ -1,16 +1,26 @@
 .buttonsContainer {
+    display: flex;
+    gap: 24px;
+    margin-left: 70px;
 }
 
 .responseContainer {
+    display: flex;
+    align-items: center;
+    gap: 87px;
+    margin: 88px 70px 90px 162px;
 }
 
 .imageContainer {
+
 }
 
 .image {
+
 }
 
 .textContainer{
+
 }
 
 .code {
