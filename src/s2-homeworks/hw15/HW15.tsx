@@ -52,10 +52,16 @@ const HW15 = () => {
         getTechs(params)
             .then((res) => {
                 // делает студент
+                if(!res) return
+                        setTotalCount(res.data?.totalCount)
+                        setTechs(res.data.techs)
 
                 // сохранить пришедшие данные
 
                 //
+            })
+            .finally(() => {
+                setLoading(false)
             })
     }
 
@@ -63,10 +69,14 @@ const HW15 = () => {
         // делает студент
 
         // setPage(
+        setPage(newPage)
         // setCount(
+        setCount(newCount)
 
         // sendQuery(
+        sendQuery({sort, page: newPage, count: newCount})
         // setSearchParams(
+        setSearchParams(formSearchParams({sort, page: newPage, count: newCount}))
 
         //
     }
@@ -75,12 +85,23 @@ const HW15 = () => {
         // делает студент
 
         // setSort(
+        setSort(newSort)
         // setPage(1) // при сортировке сбрасывать на 1 страницу
-
+        setPage(1)
         // sendQuery(
         // setSearchParams(
+        sendQuery({sort: newSort, page: 1, count})
+         setSearchParams(formSearchParams({sort: newSort, page: 1, count}))
 
         //
+    }
+
+    function formSearchParams(params: ParamsType) : URLSearchParams {
+        const searchParams = new URLSearchParams()
+        if (params.sort) searchParams.set('sort', params.sort)
+        searchParams.set('page', String(params.page))
+        searchParams.set('count', String(params.count))
+        return searchParams
     }
 
     useEffect(() => {
