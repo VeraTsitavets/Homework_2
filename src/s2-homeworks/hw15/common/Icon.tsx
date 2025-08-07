@@ -1,22 +1,22 @@
 import {CSSProperties} from 'react'
 import iconSprite from '../../../assets/IconSprite.svg'
-
 type Props = {
     iconId: string,
     width?: string,
     height?: string,
     viewBox?: string,
-    color?: string,
+    color?: string
 }
 
-export const Icon = ({iconId, color, height, viewBox, width}: Props) => (
+export const Icon = ({ iconId, width, height, viewBox, color }: Props) => (
     <svg
         width={width}
         height={height}
         viewBox={viewBox}
-        fill={'none'}
+        fill={"none"}
         color={color}
         xmlns="http://www.w3.org/2000/svg">
-        <use xlinkHref={`${iconSprite}#S{iconId}`}/>
+
+        <use xlinkHref={`${iconSprite}#${iconId}`}/>
     </svg>
 )

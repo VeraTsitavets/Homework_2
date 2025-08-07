@@ -1,27 +1,100 @@
+.container {
+    width: max-content;
+    position: relative;
+}
+
 .tech {
-    width: 50vw;
+    width: 50%;
+    font-size: inherit;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .developer {
-
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: inherit;
+    padding-left: 17px;
 }
 
 .techHeader {
-    width: 50vw;
+    composes: tech;
 }
 
 .developerHeader {
-
+    composes: developer;
 }
+
 
 .row {
     display: flex;
+    width: 50vw;
+    padding: 11px 17px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+
+    font-weight: 400;
+    background-color: #FFFFFF;
+
+    position: relative;
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+
+        left: 0;
+        bottom: 0;
+        right: 0;
+
+        height: 1px;
+        background-color: #E5E5E5;
+    }
 }
 
 .rowHeader {
-    display: flex;
+    composes: row;
+    background-color: #E5E5E5;
+    margin-top: 36px;
+    font-weight: 600;
+
+    &::before {
+        content: none;
+    }
 }
 
 .loading {
+    position: absolute;
+    z-index: 99;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: white;
+    opacity: 90%;
 
+    &::before {
+        content: "";
+        position: absolute;
+        width: 90px;
+        height: 90px;
+
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        background-image: url("../../assets/Loading.svg");
+        animation: spin 2s infinite linear;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }

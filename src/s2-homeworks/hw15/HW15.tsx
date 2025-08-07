@@ -52,10 +52,10 @@ const HW15 = () => {
         getTechs(params)
             .then((res) => {
                 // делает студент
-                if(!res) return
-                        setTotalCount(res.data?.totalCount)
-                        setTechs(res.data.techs)
+                if (!res) return
 
+                setTotalCount(res.data.totalCount)
+                setTechs(res.data.techs)
                 // сохранить пришедшие данные
 
                 //
@@ -74,11 +74,10 @@ const HW15 = () => {
         setCount(newCount)
 
         // sendQuery(
-        sendQuery({sort, page: newPage, count: newCount})
-        // setSearchParams(
-        setSearchParams(formSearchParams({sort, page: newPage, count: newCount}))
+        sendQuery({ sort, page: newPage, count: newCount})
 
-        //
+        // setSearchParams(
+        setSearchParams(formSearchParams({ sort, page: newPage, count: newCount }))
     }
 
     const onChangeSort = (newSort: string) => {
@@ -89,15 +88,14 @@ const HW15 = () => {
         // setPage(1) // при сортировке сбрасывать на 1 страницу
         setPage(1)
         // sendQuery(
-        // setSearchParams(
-        sendQuery({sort: newSort, page: 1, count})
-         setSearchParams(formSearchParams({sort: newSort, page: 1, count}))
+        sendQuery({ sort: newSort, page: 1, count })
 
-        //
+        // setSearchParams(
+        setSearchParams(formSearchParams({ sort: newSort, page: 1, count }))
     }
 
-    function formSearchParams(params: ParamsType) : URLSearchParams {
-        const searchParams = new URLSearchParams()
+    function formSearchParams(params: ParamsType): URLSearchParams {
+        const searchParams =  new URLSearchParams()
         if (params.sort) searchParams.set('sort', params.sort)
         searchParams.set('page', String(params.page))
         searchParams.set('count', String(params.count))
@@ -106,7 +104,7 @@ const HW15 = () => {
 
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
-        sendQuery({page: params.page, count: params.count})
+        sendQuery({ page: params.page || 1, count: params.count || 4 })
         setPage(+params.page || 1)
         setCount(+params.count || 4)
     }, [])
@@ -128,28 +126,29 @@ const HW15 = () => {
             <div className={s2.hwTitle}>Homework #15</div>
 
             <div className={s2.hw}>
-                {idLoading && <div id={'hw15-loading'} className={s.loading}>Loading...</div>}
+                <div className={s.container}>
+                    {idLoading && <div id={'hw15-loading'} className={s.loading}/>}
 
-                <SuperPagination
-                    page={page}
-                    itemsCountForPage={count}
-                    totalCount={totalCount}
-                    onChange={onChangePagination}
-                />
+                    <SuperPagination
+                        page={page}
+                        itemsCountForPage={count}
+                        totalCount={totalCount}
+                        onChange={onChangePagination}
+                    />
+                    <div className={s.rowHeader}>
+                        <div className={s.techHeader}>
+                            Tech
+                            <SuperSort sort={sort} value={'tech'} onChange={onChangeSort}/>
+                        </div>
 
-                <div className={s.rowHeader}>
-                    <div className={s.techHeader}>
-                        tech
-                        <SuperSort sort={sort} value={'tech'} onChange={onChangeSort}/>
+                        <div className={s.developerHeader}>
+                            Developer
+                            <SuperSort sort={sort} value={'developer'} onChange={onChangeSort}/>
+                        </div>
                     </div>
 
-                    <div className={s.developerHeader}>
-                        developer
-                        <SuperSort sort={sort} value={'developer'} onChange={onChangeSort}/>
-                    </div>
+                    {mappedTechs}
                 </div>
-
-                {mappedTechs}
             </div>
         </div>
     )

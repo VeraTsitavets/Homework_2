@@ -1,11 +1,21 @@
 .pagination {
     display: flex;
+    align-items: center;
+}
+
+.select {
+    border: 1px solid #ECEBEB;
 }
 
 .text1 {
+    margin: 0 10px 0 24px;
 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    color: #0D0B0C;
 }
 
 .text2 {
-
+    composes: text1;
+    margin: 0 0 0 10px;
 }
